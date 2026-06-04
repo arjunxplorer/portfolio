@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your Name — Software Developer portfolio" />
+  <title>Arjun Sharma — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="effects.css" />
+</head>
+<body>
+
+  <div class="port">
+
+    <!-- Nav -->
+    <nav class="nav">
+      <span class="nav-name">Arjun Sharma</span>
+      <div class="nav-links">
+        <a href="#work">Projects</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="avatar">
+        <span>AS</span>
+        <!-- To use a photo instead: remove the span and add:
+             <img src="photo.jpg" alt="Your Name" /> -->
+      </div>
+      <div class="hero-text">
+        <h1><span id="typewriter"></span><span class="cursor" aria-hidden="true">|</span></h1>
+        <p>
+          I'm a CS student who builds projects to learn by doing. Still figuring a lot out, but genuinely excited about software and what it can do. Always open to feedback or a conversation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects" id="work">
+      <p class="section-label">Selected Projects</p>
+
+      <!-- AI-Cyber -->
+      <article class="project-card open" id="p10">
+        <div class="card-trigger" onclick="toggleProject('p10')" role="button" tabindex="0" aria-expanded="true">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">CipherAI</span>
+              <a href="https://github.com/arjunxplorer/CipherAI" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2025</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Autonomous penetration-testing agent that orchestrates security tools through a structured intent pipeline.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Kali Linux</span>
+            <span class="tag">Playwright</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">CLI Tool &nbsp;·&nbsp; AI Security</p>
+              <p class="project-desc">
+                AI-Cyber is an autonomous penetration-testing agent with a structured intent IR pipeline. An LLM produces JSON intents compiled through a validator and command generator, preventing command injection across 40+ security tools (nmap, sqlmap, nuclei, hydra) executed in an isolated Kali Linux container.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Plan-driven orchestrator with saturation detection — 70% response-token match threshold triggers re-planning</li>
+                  <li>4-tier memory system — session NDJSON, hot KB with 7-day TTL, vector embeddings, 103-file static knowledge base</li>
+                  <li>Hard budget enforcement — 20 LLM calls, 100 tool calls per engagement to control cost</li>
+                  <li>Scope-aware capability guard parsing natural-language constraints into deterministic policies across 7 dimensions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sketch -->
+      <article class="project-card" id="p1">
+        <div class="card-trigger" onclick="toggleProject('p1')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Sketch</span>
+              <a href="https://github.com/arjunxplorer/sketch" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2026</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Real-time collaborative whiteboard where multiple users can draw and annotate simultaneously.</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">C++</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Zustand</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">Web App &nbsp;·&nbsp; Full-stack</p>
+              <p class="project-desc">
+                Sketch is a browser-based collaborative drawing platform that enables teams to sketch,
+                brainstorm, and annotate together in real-time. The backend is a high-performance
+                WebSocket server written in C++ using Boost.Beast, handling concurrent multi-user
+                sessions with sub-100ms latency for drawing operations.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Real-time cursor tracking and presence awareness across users</li>
+                  <li>Drawing tools — pen, eraser, shapes, text, zoom controls</li>
+                  <li>Multi-user room system with automatic reconnection</li>
+                  <li>Frontend on Vercel, C++ backend on Render</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NeuroPipe -->
+      <article class="project-card" id="p2">
+        <div class="card-trigger" onclick="toggleProject('p2')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">NeuroPipe</span>
+              <a href="https://github.com/arjunxplorer/NeuroPipe" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2025</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">High-performance message broker that aggregates and routes real-time logs across distributed systems.</p>
+          <div class="project-tags">
+            <span class="tag">C++20</span>
+            <span class="tag">Asio</span>
+            <span class="tag">CMake</span>
+            <span class="tag">Shell</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">CLI Tool &nbsp;·&nbsp; Systems</p>
+              <p class="project-desc">
+                NeuroPipe is a production-ready distributed message broker built in C++20 that implements
+                a publish-subscribe architecture for real-time communication between microservices.
+                It handles 100+ concurrent connections with sub-millisecond routing and supports
+                500+ messages per second, with a live debugging dashboard for log visualization.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Language-agnostic TCP protocol — works with any programming language</li>
+                  <li>Thread-safe concurrency with automatic reconnection</li>
+                  <li>Real-time monitoring dashboard with severity filtering</li>
+                  <li>11 comprehensive edge-case tests covering concurrency and performance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Focus Flow -->
+      <article class="project-card" id="p8">
+        <div class="card-trigger" onclick="toggleProject('p8')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Focus Flow</span>
+              <a href="https://github.com/arjunxplorer/focus-flow" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2026</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">A productivity app combining task management with a Pomodoro timer for structured, focused work sessions.</p>
+          <div class="project-tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Tailwind</span>
+            <span class="tag">Recharts</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">Web App &nbsp;·&nbsp; Productivity</p>
+              <p class="project-desc">
+                Focus Flow addresses productivity fragmentation by integrating task management with
+                timed focus sessions. Users create tasks, track them with a built-in Pomodoro timer,
+                and visualize work patterns through a dashboard with charts. Authentication supports
+                both email and Google OAuth via Supabase.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Pomodoro timer with configurable session lengths</li>
+                  <li>Analytics dashboard and history view built with Recharts</li>
+                  <li>Email and Google OAuth authentication</li>
+                  <li>Tested with Vitest; form validation via React Hook Form + Zod</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Best Papers Finder -->
+      <article class="project-card" id="p5">
+        <div class="card-trigger" onclick="toggleProject('p5')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Best Papers Finder</span>
+              <a href="https://github.com/arjunxplorer/Research-Paper-finder" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2026</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Helps researchers discover the most impactful papers in any field, ranked by foundational weight or emerging trends.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">Web App &nbsp;·&nbsp; Full-stack</p>
+              <p class="project-desc">
+                Best Papers Finder aggregates data from Semantic Scholar, OpenAlex, PubMed, and arXiv,
+                then ranks the top 20 papers using custom algorithms that weight relevance, citation
+                metrics, and recency based on user preference. Researchers can filter by year range,
+                open-access status, and paper type — with abstracts and citation counts surfaced directly.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Dual ranking modes — foundational classics vs. emerging trends</li>
+                  <li>Multi-source deduplication pipeline across 4 academic APIs</li>
+                  <li>Caching layer for fast repeated queries</li>
+                  <li>Filters for year range, open access, and paper type</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PodStream -->
+      <article class="project-card" id="p6">
+        <div class="card-trigger" onclick="toggleProject('p6')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">PodStream</span>
+              <a href="https://github.com/arjunxplorer/PodStream" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2025</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">A podcast platform where users can upload, discover, and manage their favorite podcasts with authentication and search.</p>
+          <div class="project-tags">
+            <span class="tag">React 19</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">Tailwind</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">Web App &nbsp;·&nbsp; Full-stack</p>
+              <p class="project-desc">
+                PodStream is a full-stack podcast application that centralizes podcast discovery and
+                management in one platform. Built with React 19 and TypeScript on the frontend and
+                Express.js with Supabase on the backend, it offers real-time playback, SoundCloud
+                integration, file uploads, and fuzzy search — with full dark mode support.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>User authentication and session management via Supabase</li>
+                  <li>Real-time podcast playback and SoundCloud integration</li>
+                  <li>Fuzzy search powered by Fuse.js</li>
+                  <li>93.2% TypeScript codebase — strong type safety throughout</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Scheduling Agent -->
+      <article class="project-card" id="p4">
+        <div class="card-trigger" onclick="toggleProject('p4')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Scheduling Agent</span>
+              <a href="https://github.com/arjunxplorer/SchedulingAgent" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2025</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">AI assistant that schedules calendar events from natural language commands — no typing required.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">LangGraph</span>
+            <span class="tag">Google Calendar API</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">CLI Tool &nbsp;·&nbsp; AI Agent</p>
+              <p class="project-desc">
+                Scheduling Agent converts natural language instructions into Google Calendar events
+                automatically. Type something like "Schedule a meeting with John tomorrow at 2pm for
+                1 hour" and the agent handles date parsing, timezone conversion, and conflict detection —
+                no manual data entry needed.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Natural language parsing with TogetherAI LLM via LangChain + LangGraph</li>
+                  <li>Google Calendar API integration — create, remove, and view events</li>
+                  <li>Automatic timezone handling (America/Chicago) and conflict detection</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Maze Visualizer -->
+      <article class="project-card" id="p3">
+        <div class="card-trigger" onclick="toggleProject('p3')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Maze Visualizer</span>
+              <a href="https://github.com/arjunxplorer/Maze-Solver" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2026</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Interactive web app that generates random mazes and visualizes pathfinding algorithms in real-time.</p>
+          <div class="project-tags">
+            <span class="tag">C++</span>
+            <span class="tag">WebAssembly</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Canvas API</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">Web App &nbsp;·&nbsp; Algorithms</p>
+              <p class="project-desc">
+                Maze Visualizer combines performance-critical algorithms with an interactive UI to explore
+                core computer science concepts. The app generates mazes using a recursive backtracker
+                compiled to WebAssembly via Emscripten for 60fps performance, then solves them with BFS —
+                animating every step of both processes.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>C++ maze generation compiled to WebAssembly for smooth 60fps animation</li>
+                  <li>BFS pathfinding with step-by-step frontier visualization</li>
+                  <li>Adjustable maze size (5×5 to 40×40) and animation speed</li>
+                  <li>Real-time stats — cells visited, path length, total steps</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PiCar -->
+      <article class="project-card" id="p9">
+        <div class="card-trigger" onclick="toggleProject('p9')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">PiCar Control System</span>
+              <a href="https://github.com/OfficialArapaima/networking-picar3" class="gh-link" target="_blank" rel="noopener" onclick="event.stopPropagation()">GitHub ↗</a>
+            </div>
+            <div class="card-right">
+              <span class="project-year">2025</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Remote-controlled robotic car with live video streaming and autonomous obstacle avoidance over a network.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">TCP Sockets</span>
+            <span class="tag">Raspberry Pi</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <p class="card-type">IoT &nbsp;·&nbsp; Embedded Systems</p>
+              <p class="project-desc">
+                A networked client-server system for controlling a PiCar-X robotic vehicle over TCP sockets.
+                The car streams live video with real-time face detection back to the client, accepts
+                keyboard-based remote commands, and autonomously avoids obstacles using ultrasonic sensors —
+                all running concurrently via a dual-threaded architecture.
+              </p>
+              <div class="card-features">
+                <h4>Key features</h4>
+                <ul class="feature-list">
+                  <li>Live video streaming with OpenCV face detection</li>
+                  <li>Autonomous obstacle avoidance using ultrasonic sensors</li>
+                  <li>Custom binary protocol for image transmission with timestamps</li>
+                  <li>Dual-threaded design for concurrent video and command handling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Leadership & Activities -->
+    <section class="projects" id="leadership">
+      <p class="section-label">Leadership &amp; Activities</p>
+
+      <article class="project-card open" id="l1">
+        <div class="card-trigger" onclick="toggleProject('l1')" role="button" tabindex="0" aria-expanded="true">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">IT Team Lead</span>
+            </div>
+            <div class="card-right">
+              <span class="project-year">Northwestern College</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Led 15-member work-study technician team; managed shift scheduling, coordinated hardware and helpdesk operations across campus.</p>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>Managed shift scheduling and hardware/helpdesk operations across campus</li>
+                <li>Delivered training presentations on IT troubleshooting and system improvements to faculty and students</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="l2">
+        <div class="card-trigger" onclick="toggleProject('l2')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Research Assistant, Astronomy</span>
+            </div>
+            <div class="card-right">
+              <span class="project-year">Northwestern College</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Built Python/Selenium browser automation tool to batch-download infrared mosaic data from NASA IRSA.</p>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>Automated data retrieval across multiple sky coordinates and date ranges using 5 parallel Chrome instances</li>
+                <li>Implemented progress tracking to prevent duplicate downloads</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="l3">
+        <div class="card-trigger" onclick="toggleProject('l3')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">Teaching Assistant, Astronomy</span>
+            </div>
+            <div class="card-right">
+              <span class="project-year">Northwestern College</span>
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Supported professor with lab instruction and grading for 10-person course.</p>
+        </div>
+        <div class="card-body">
+          <div class="card-body-inner">
+            <div class="card-content">
+              <ul class="feature-list">
+                <li>Provided lab instruction and grading support for a 10-student astronomy course</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="l4">
+        <div class="card-trigger" onclick="toggleProject('l4')" role="button" tabindex="0" aria-expanded="false">
+          <div class="card-header">
+            <div class="card-title-group">
+              <span class="card-title">ICPC</span>
+            </div>
+            <div class="card-right">
+              <span class="chevron" aria-hidden="true">&#8964;</span>
+            </div>
+          </div>
+          <p class="card-summary">Competed in the International Collegiate Programming Contest twice.</p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Skills -->
+    <section class="skills-section" id="skills">
+      <p class="section-label">Skills</p>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <div class="skill-pills">
+            <span class="skill-pill">TypeScript</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Python</span>
+            <span class="skill-pill">C++</span>
+            <span class="skill-pill">SQL</span>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">C</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>AI / ML</h4>
+          <div class="skill-pills">
+            <span class="skill-pill">LangChain</span>
+            <span class="skill-pill">LangGraph</span>
+            <span class="skill-pill">OpenAI API</span>
+            <span class="skill-pill">Anthropic API</span>
+            <span class="skill-pill">OpenRouter</span>
+            <span class="skill-pill">Hugging Face</span>
+            <span class="skill-pill">sentence-transformers</span>
+            <span class="skill-pill">Vector Embeddings</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Frameworks &amp; Tools</h4>
+          <div class="skill-pills">
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">React Native</span>
+            <span class="skill-pill">Next.js</span>
+            <span class="skill-pill">Node.js</span>
+            <span class="skill-pill">Express</span>
+            <span class="skill-pill">FastAPI</span>
+            <span class="skill-pill">Tailwind CSS</span>
+            <span class="skill-pill">Zustand</span>
+            <span class="skill-pill">React Query</span>
+            <span class="skill-pill">Vite</span>
+            <span class="skill-pill">Expo</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Cloud &amp; Infra</h4>
+          <div class="skill-pills">
+            <span class="skill-pill">PostgreSQL</span>
+            <span class="skill-pill">Supabase</span>
+            <span class="skill-pill">Firebase</span>
+            <span class="skill-pill">AWS Lambda</span>
+            <span class="skill-pill">Firestore</span>
+            <span class="skill-pill">SQLite</span>
+            <span class="skill-pill">Docker</span>
+            <span class="skill-pill">Vercel</span>
+            <span class="skill-pill">Render</span>
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill">GitHub Actions</span>
+            <span class="skill-pill">Jest</span>
+            <span class="skill-pill">Playwright</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <footer class="contact" id="contact">
+      <p>Available for work</p>
+      <div class="contact-links">
+        <a href="https://github.com/arjunxplorer" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/arjunsharma99" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    function toggleProject(id) {
+      const card = document.getElementById(id);
+      const trigger = card.querySelector('.card-trigger');
+      const isOpen = card.classList.contains('open');
+      card.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    document.querySelectorAll('.card-trigger').forEach(el => {
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click();
+        }
+      });
+    });
+
+    // Typewriter
+    (function() {
+      const el = document.getElementById('typewriter');
+      if (!el) return;
+      const lines = ['Building Software', 'to Learn.'];
+      let lineIdx = 0, charIdx = 0, display = '';
+
+      function type() {
+        if (lineIdx >= lines.length) return;
+        if (charIdx < lines[lineIdx].length) {
+          display += lines[lineIdx][charIdx++];
+          el.innerHTML = display.replace(/\n/g, '<br>');
+          setTimeout(type, 55 + Math.random() * 35);
+        } else {
+          display += '\n';
+          charIdx = 0;
+          lineIdx++;
+          if (lineIdx < lines.length) {
+            el.innerHTML = display.replace(/\n/g, '<br>');
+            setTimeout(type, 500);
+          }
+        }
+      }
+      setTimeout(type, 600);
+    })();
+
+    // Dust mote texture
+    (function() {
+      const c = document.createElement('canvas');
+      c.width = 128;
+      c.height = 128;
+      const ctx = c.getContext('2d');
+      const img = ctx.createImageData(128, 128);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const t = Math.random();
+        let v;
+        if (t < 0.003) {
+          v = 140 + Math.random() * 115; // bright mote
+        } else if (t < 0.02) {
+          v = 40 + Math.random() * 60; // dim mote
+        } else {
+          v = Math.random() * 25; // near-black base
+        }
+        d[i] = v;
+        d[i + 1] = v;
+        d[i + 2] = v;
+        d[i + 3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+      const div = document.createElement('div');
+      div.id = 'dust';
+      div.style.cssText =
+        'position:fixed;inset:0;pointer-events:none;z-index:9999;' +
+        'background-image:url(' + c.toDataURL() + ');' +
+        'background-repeat:repeat;background-size:128px 128px;' +
+        'opacity:0.4';
+      document.body.appendChild(div);
+    })();
+
+    // Mouse spotlight
+    (function() {
+      const div = document.createElement('div');
+      div.id = 'spotlight';
+      document.body.appendChild(div);
+      let raf = null;
+      document.addEventListener('mousemove', function(e) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function() {
+          div.style.setProperty('--mx', e.clientX + 'px');
+          div.style.setProperty('--my', e.clientY + 'px');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

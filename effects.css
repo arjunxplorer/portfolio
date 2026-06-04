@@ -1,0 +1,86 @@
+/* ── Typewriter cursor ── */
+.cursor {
+  display: inline-block;
+  font-weight: 300;
+  color: var(--text-tertiary);
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ── Mouse spotlight ── */
+#spotlight {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.1;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(230, 225, 220, 0.5),
+    transparent 60%
+  );
+  transition: opacity 0.4s ease;
+}
+
+/* ── Divider shimmer ── */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: -0.5px;
+  left: -100%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200, 185, 165, 0.3),
+    transparent
+  );
+  animation: divider-shimmer 12s ease-in-out infinite;
+}
+
+.project-card:nth-child(2)::after { animation-delay: 0s; }
+.project-card:nth-child(3)::after { animation-delay: 1.3s; }
+.project-card:nth-child(4)::after { animation-delay: 2.6s; }
+.project-card:nth-child(5)::after { animation-delay: 4s; }
+.project-card:nth-child(6)::after { animation-delay: 5.3s; }
+.project-card:nth-child(7)::after { animation-delay: 6.6s; }
+.project-card:nth-child(8)::after { animation-delay: 8s; }
+.project-card:nth-child(9)::after { animation-delay: 9.3s; }
+.project-card:nth-child(10)::after { animation-delay: 10.6s; }
+
+@keyframes divider-shimmer {
+  0%, 85% { left: -60%; opacity: 0; }
+  88% { left: -60%; opacity: 1; }
+  96% { left: 120%; opacity: 1; }
+  100% { left: 120%; opacity: 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .project-card::after {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(240, 235, 230, 0.12),
+      transparent
+    );
+  }
+}
+
+/* ── Project card hover ── */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  filter: brightness(2.08);
+}
