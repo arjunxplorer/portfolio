@@ -8,8 +8,8 @@
 
 :root {
   --text-primary: #e8e8e6;
-  --text-secondary: #999994;
-  --text-tertiary: #666662;
+  --text-secondary: #e0e0dc;
+  --text-tertiary: #c8c8c4;
   --bg-primary: #000000;
   --bg-secondary: #0d0d0d;
   --border: rgba(255, 255, 255, 0.1);
@@ -18,8 +18,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --text-primary: #e8e8e6;
-    --text-secondary: #999994;
-    --text-tertiary: #666662;
+    --text-secondary: #b5b5b0;
+    --text-tertiary: #8a8a86;
     --bg-primary: #000000;
     --bg-secondary: #0d0d0d;
     --border: rgba(255, 255, 255, 0.1);
