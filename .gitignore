@@ -1,0 +1,5 @@
+.DS_Store
+Project/LPD_2024_public.csv
+Project/*_files/
+Project/*.knit.md
+Project/*.utf8.md

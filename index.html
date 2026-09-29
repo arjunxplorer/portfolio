@@ -18,6 +18,7 @@
       <span class="nav-name">Arjun Sharma</span>
       <div class="nav-links">
         <a href="#work">Projects</a>
+        <a href="#datascience">Data Science</a>
         <a href="#leadership">Leadership</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
@@ -365,6 +366,48 @@
                   <li>Dual-threaded design for concurrent video and command handling</li>
                 </ul>
               </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Data Science -->
+    <section class="projects" id="datascience">
+      <p class="section-label">Data Science</p>
+
+      <article class="project-card project-card--link" id="d1">
+        <a class="card-link" href="datascience/wildlife.html" aria-label="Open Wildlife Population Trends report"></a>
+        <div class="card-main">
+          <div class="card-header">
+            <span class="card-title">Wildlife Population Trends</span>
+            <span class="project-year">2026</span>
+          </div>
+          <span class="gh-link">View report ↗</span>
+          <p class="card-summary">Analysis of 70 years of Living Planet Database records comparing freshwater, marine, and terrestrial population trajectories.</p>
+          <div class="project-tags">
+            <span class="tag">R</span>
+            <span class="tag">tidyverse</span>
+            <span class="tag">ggplot2</span>
+            <span class="tag">R Markdown</span>
+          </div>
+        </div>
+        <div class="card-details">
+          <p class="card-type">Data Analysis &nbsp;·&nbsp; R Markdown</p>
+          <p class="project-desc">
+            Wildlife populations are recorded in incompatible units (individuals, breeding pairs, abundance
+            indices), so each population was normalized to an index of 100 at its first observation and
+            aligned by years since monitoring began. Median trajectories were then compared across
+            ecosystems over the first 20 years, with a distribution breakdown at year 20.
+          </p>
+          <div class="card-features">
+            <h4>Key findings</h4>
+            <ul class="feature-list">
+              <li>Marine median index fell to ~74 after 20 years — a 26% decline from baseline</li>
+              <li>Freshwater populations dipped early, then recovered to a median of ~109</li>
+              <li>Terrestrial median stayed near its baseline of 100</li>
+              <li>Reshaped 71 year-columns into long format and filtered zero-baseline and single-observation populations</li>
+            </ul>
+          </div>
         </div>
       </article>
 

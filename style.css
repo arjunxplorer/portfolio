@@ -259,6 +259,87 @@ body {
   color: var(--text-primary);
 }
 
+/* ── Clickable card (whole card is a link) ── */
+.project-card--link {
+  cursor: pointer;
+}
+
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.project-card--link .gh-link {
+  pointer-events: none;
+}
+
+.project-card--link:hover .gh-link,
+.project-card--link:hover .card-title {
+  color: var(--text-primary);
+}
+
+/* ── Report page ── */
+.back-link {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--text-primary);
+}
+
+.report-header {
+  margin-bottom: 2rem;
+}
+
+.report-header .card-header {
+  margin-bottom: 0.75rem;
+}
+
+.report-header .card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.report-header .card-summary {
+  max-width: 620px;
+}
+
+.report-links {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0 0.25rem;
+}
+
+.report-links .gh-link {
+  margin-bottom: 0;
+}
+
+.report-frame {
+  display: block;
+  width: 100%;
+  height: 80vh;
+  min-height: 320px;
+  max-height: none;
+  border: 0.5px solid var(--border);
+  background: var(--bg-primary);
+  margin-bottom: 2rem;
+}
+
+.report-footer {
+  border-top: 0.5px solid var(--border);
+  padding-top: 1.25rem;
+  margin-bottom: 3rem;
+}
+
 /* ── Skills ── */
 .skills-section {
   margin-bottom: 3.5rem;

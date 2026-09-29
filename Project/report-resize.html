@@ -1,0 +1,61 @@
+<script>
+(function () {
+  // In-page anchors (TOC): when embedded, scroll the parent page to the section.
+  function gotoHash(hash) {
+    if (!hash || hash === '#') return;
+    var id = decodeURIComponent(hash.slice(1));
+    var el = document.getElementById(id);
+    if (!el) return;
+    var offsetInDoc = el.getBoundingClientRect().top + window.pageYOffset;
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: 'report-goto', offset: offsetInDoc }, '*');
+    } else {
+      window.scrollTo({ top: Math.max(0, offsetInDoc - 16), behavior: 'smooth' });
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    if (!document.getElementById(decodeURIComponent(href.slice(1)))) return;
+    e.preventDefault();
+    gotoHash(href);
+  });
+
+  if (window.location.hash) {
+    window.addEventListener('load', function () {
+      gotoHash(window.location.hash);
+    });
+  }
+
+  if (window.parent === window) return;
+
+  var lastSent = 0;
+
+  function measure() {
+    var marker = document.getElementById('technical-notes');
+    if (marker) {
+      var r = marker.getBoundingClientRect();
+      return Math.ceil(r.bottom + window.pageYOffset + 48);
+    }
+    var body = document.body;
+    return Math.ceil(body ? body.getBoundingClientRect().height : 0);
+  }
+
+  function postHeight() {
+    var h = measure();
+    if (h < 100) return;
+    if (Math.abs(h - lastSent) < 8) return;
+    lastSent = h;
+    window.parent.postMessage({ type: 'report-height', height: h }, '*');
+  }
+
+  window.addEventListener('load', function () {
+    postHeight();
+    setTimeout(postHeight, 400);
+    setTimeout(postHeight, 2000);
+  });
+})();
+</script>

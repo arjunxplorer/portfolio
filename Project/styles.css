@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* Report stylesheet — matches the portfolio palette in ../style.css */
+
+:root {
+  --text-primary: #ffff00;
+  --text-secondary: #ffffff;
+  --text-tertiary: #00f3c9;
+  --bg-primary: #541b1b;
+  --bg-secondary: #4f3a3a;
+  --border: rgb(21 166 232);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.85;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+/* rmarkdown wraps content in .main-container / .container-fluid */
+.main-container,
+.container-fluid {
+  max-width: 100%;
+  margin: 0;
+  padding: 1.5rem 2rem 3rem;
+}
+
+/* Title block */
+#header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.title,
+h1.title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.author,
+.date,
+h4.author,
+h4.date {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0.25rem 0;
+  font-weight: 400;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin: 2.25rem 0 0.75rem;
+}
+
+h1 { font-size: 18px; }
+h2 { font-size: 15px; }
+h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-tertiary); }
+
+.header-section-number {
+  color: var(--text-tertiary);
+  margin-right: 0.5rem;
+}
+
+p, li {
+  color: var(--text-secondary);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+a {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 2px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+li {
+  margin-bottom: 0.375rem;
+}
+
+/* Tables (knitr::kable output) */
+table {
+  border-collapse: collapse;
+  width: auto;
+  min-width: 50%;
+  margin: 1.25rem auto 1.5rem;
+  font-size: 12px;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 0 0 0.5rem;
+}
+
+thead th {
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: left;
+  padding: 0.5rem 0.875rem;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: 0.45rem 0.875rem;
+  border-bottom: 0.5px solid rgba(21, 166, 232, 0.35);
+  color: var(--text-secondary);
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid var(--border);
+}
+
+/* Figures — ggplot renders on a white panel; frame it as an inset card */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.25rem auto 1.75rem;
+  padding: 0.75rem;
+  background: #ffffff;
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+}
+
+/* Math (MathJax) */
+.MathJax_Display,
+.MathJax {
+  color: var(--text-secondary);
+}
+
+/* Code (folded by default in YAML, styled if shown) */
+pre, code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+}
+
+pre {
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  padding: 0.875rem 1rem;
+  overflow-x: auto;
+  color: var(--text-secondary);
+}
+
+code {
+  color: var(--text-tertiary);
+}
+
+pre code {
+  color: inherit;
+}
+
+/* Floating TOC (tocify) */
+#TOC {
+  font-size: 11px;
+}
+
+.tocify {
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  background: var(--bg-primary);
+}
+
+.tocify ul,
+.tocify li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.tocify-item a,
+.tocify .list-group-item {
+  display: block;
+  padding: 0.4rem 0.875rem;
+  color: var(--text-secondary);
+  border: none;
+  border-bottom: 0.5px solid rgba(21, 166, 232, 0.25);
+  background: transparent;
+}
+
+.tocify .list-group-item.active,
+.tocify .list-group-item.active a,
+.tocify-item.active a {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.tocify-subheader .tocify-item a {
+  padding-left: 1.75rem;
+  font-size: 10px;
+}
+
+.tocify-extend-page {
+  display: none;
+}
+
+/* Code-folding toggle button */
+.btn,
+.btn-default {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: var(--text-primary);
+}
+
+.dropdown-menu {
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border);
+}
+
+.dropdown-menu a {
+  color: var(--text-secondary);
+  border: none;
+}
+
+hr {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin: 2rem 0;
+}

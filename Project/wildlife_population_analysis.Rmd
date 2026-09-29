@@ -1,0 +1,395 @@
+---
+title: "Wildlife Population Trends Across Ecosystems"
+author: "Arjun Sharma"
+date: "`r format(Sys.Date(), '%B %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+    theme: null
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  fig.width = 8,
+  fig.height = 5
+)
+
+library(tidyverse)
+library(knitr)
+```
+
+# Abstract
+
+Wildlife populations are monitored using many different measurement methods,
+making direct comparisons difficult. This analysis examines how monitored
+wildlife populations changed over time and whether those patterns differed
+among freshwater, marine, and terrestrial ecosystems.
+
+To make populations comparable, each population was converted to an index
+where its first observed value was set to 100. Population trends were then
+compared during the first 20 years after monitoring began.
+
+The analysis found distinct descriptive patterns among ecosystem types.
+Marine populations showed a substantial decline in median population index,
+freshwater populations showed an initial decline followed by recovery, and
+the terrestrial median remained close to its baseline.
+
+# 1. Introduction
+
+Wildlife monitoring datasets contain populations collected from different
+locations, species, ecosystems, and measurement systems.
+
+This creates an important statistical problem: a population measured in
+"number of individuals" cannot be directly averaged with one measured in
+"breeding pairs" or another measured using an abundance index.
+
+The central research question of this analysis is:
+
+> **How have monitored wildlife populations changed over time, and do these
+> changes differ across ecosystem types?**
+
+# 2. Data
+
+The analysis uses the Living Planet Database.
+
+The original dataset contains wildlife population observations across the
+years 1950 through 2020 and includes information such as species, geographic
+region, ecosystem type, location, and measurement units.
+
+```{r import-data}
+wildlife <- read_csv(
+  "LPD_2024_public.csv",
+  na = c("NULL", ""),
+  show_col_types = FALSE
+) |>
+  select(-`...103`)
+```
+
+```{r data-summary}
+tibble(
+  `Population records` = nrow(wildlife),
+  `Original variables` = ncol(wildlife),
+  `First year` = 1950,
+  `Last year` = 2020
+) |>
+  kable()
+```
+
+The dataset contains three ecosystem categories:
+
+```{r ecosystem-counts}
+wildlife |>
+  count(System) |>
+  kable(
+    col.names = c("Ecosystem", "Population Records"),
+    caption = "Population records by ecosystem"
+  )
+```
+
+# 3. Data Preparation
+
+## 3.1 Reshaping the Data
+
+The original dataset stores every year in a separate column. For analysis,
+the data were converted from wide format into long format so that each row
+represents one population measurement in one year.
+
+```{r reshape}
+wildlife_long <- wildlife |>
+  pivot_longer(
+    cols = `1950`:`2020`,
+    names_to = "year",
+    values_to = "population"
+  ) |>
+  mutate(
+    year = as.numeric(year)
+  )
+```
+
+## 3.2 Missing Population Measurements
+
+```{r missing-data}
+missing_summary <- wildlife_long |>
+  summarize(
+    Total = n(),
+    Missing = sum(is.na(population)),
+    Available = sum(!is.na(population))
+  )
+
+missing_summary |>
+  kable(caption = "Availability of population measurements")
+```
+
+A large proportion of the possible population-year combinations contain no
+measurement. Therefore, the amount of monitoring data available differs
+substantially across years.
+
+# 4. Monitoring Coverage Over Time
+
+```{r coverage}
+year_counts <- wildlife_long |>
+  filter(!is.na(population)) |>
+  count(year)
+
+ggplot(year_counts, aes(x = year, y = n)) +
+  geom_line(linewidth = 0.8) +
+  labs(
+    x = "Year",
+    y = "Number of Population Measurements",
+    title = "Wildlife Population Measurements by Year"
+  ) +
+  theme_minimal()
+```
+
+This figure represents **monitoring coverage**, not wildlife abundance.
+A larger value means that more population measurements were available during
+that year.
+
+# 5. Making Populations Comparable
+
+The database contains many different measurement units. For example, some
+populations are represented by numbers of individuals while others use
+breeding pairs, abundance indices, or other sampling measures.
+
+Directly averaging these measurements would therefore be inappropriate.
+
+Instead, each population was converted into a relative population index:
+
+\[
+\text{Population Index} =
+\frac{\text{Population at time }t}
+{\text{Initial Population}}
+\times 100
+\]
+
+An index of:
+
+- **100** represents the starting level.
+- **120** represents a value 20% above the starting level.
+- **80** represents a value 20% below the starting level.
+
+```{r population-index}
+wildlife_index <- wildlife_long |>
+  filter(!is.na(population)) |>
+  group_by(ID) |>
+  arrange(year, .by_group = TRUE) |>
+  mutate(
+    first_population = first(population)
+  ) |>
+  filter(first_population > 0) |>
+  mutate(
+    population_index =
+      (population / first_population) * 100
+  ) |>
+  filter(n() >= 2) |>
+  mutate(
+    first_year = first(year),
+    years_since_start = year - first_year
+  ) |>
+  ungroup()
+```
+
+Populations whose initial measurement was zero were excluded because a
+relative index cannot be calculated using zero as the denominator.
+Populations with fewer than two measurements were also excluded because
+change over time could not be determined.
+
+# 6. Ecosystem Population Trends
+
+Because monitoring began in different calendar years for different
+populations, populations were aligned according to the number of years since
+monitoring began.
+
+For every ecosystem and monitoring year, the **median population index** was
+calculated. The median was used instead of the mean because population indices
+can contain very large values and extreme changes.
+
+```{r ecosystem-trends}
+ecosystem_trends <- wildlife_index |>
+  group_by(System, years_since_start) |>
+  summarize(
+    median_index =
+      median(population_index, na.rm = TRUE),
+    populations = n_distinct(ID),
+    .groups = "drop"
+  )
+```
+
+## First 20 Years of Monitoring
+
+```{r main-figure}
+ecosystem_trends |>
+  filter(years_since_start <= 20) |>
+  ggplot(
+    aes(
+      x = years_since_start,
+      y = median_index,
+      color = System
+    )
+  ) +
+  geom_line(linewidth = 1) +
+  geom_hline(
+    yintercept = 100,
+    linetype = "dashed"
+  ) +
+  labs(
+    x = "Years Since Monitoring Began",
+    y = "Median Population Index",
+    color = "Ecosystem",
+    title = "Relative Wildlife Population Trends by Ecosystem",
+    subtitle = "Baseline population index = 100"
+  ) +
+  theme_minimal()
+```
+
+The three ecosystem categories show noticeably different descriptive
+patterns during the first 20 years of monitoring.
+
+# 7. Comparison at Key Time Points
+
+```{r milestone-table}
+milestone_trends <- ecosystem_trends |>
+  filter(
+    years_since_start %in%
+      c(0, 5, 10, 15, 20)
+  ) |>
+  mutate(
+    median_index = round(median_index, 1)
+  )
+
+milestone_trends |>
+  kable(
+    col.names = c(
+      "Ecosystem",
+      "Years Since Start",
+      "Median Population Index",
+      "Populations"
+    ),
+    caption =
+      "Population trends at selected monitoring intervals"
+  )
+```
+
+At 20 years, the median population index was approximately:
+
+- **Freshwater:** 109
+- **Marine:** 73.9
+- **Terrestrial:** 100
+
+Relative to their baseline, this corresponds to approximately a **9% increase
+for the freshwater median**, a **26.1% decrease for the marine median**, and
+little change in the terrestrial median.
+
+These values describe the median monitored population and should not be
+interpreted as saying that every population within an ecosystem followed the
+same trajectory.
+
+# 8. Variation Among Individual Populations
+
+The median can hide substantial variation among individual populations.
+Therefore, populations with an observation exactly 20 years after monitoring
+began were classified according to their population index.
+
+Populations within 10% of their starting value were classified as
+"Near baseline."
+
+```{r distribution}
+year20_distribution <- wildlife_index |>
+  filter(years_since_start == 20) |>
+  mutate(
+    percent_change = population_index - 100,
+    trend = case_when(
+      population_index < 90 ~ "Decreased",
+      population_index > 110 ~ "Increased",
+      TRUE ~ "Near baseline"
+    )
+  )
+
+trend_summary <- year20_distribution |>
+  count(
+    System,
+    trend,
+    name = "populations"
+  ) |>
+  group_by(System) |>
+  mutate(
+    percent =
+      populations / sum(populations) * 100
+  ) |>
+  ungroup()
+```
+
+```{r trend-plot}
+ggplot(
+  trend_summary,
+  aes(
+    x = System,
+    y = percent,
+    fill = trend
+  )
+) +
+  geom_col(position = "dodge") +
+  labs(
+    x = "Ecosystem",
+    y = "Percent of Populations",
+    fill = "Population Trend",
+    title =
+      "Population Trends After 20 Years by Ecosystem"
+  ) +
+  theme_minimal()
+```
+
+# 9. Limitations
+
+Several limitations should be considered when interpreting these results.
+
+1. Populations whose first recorded value was zero were excluded because the
+   relative population index cannot be calculated with a zero denominator.
+
+2. Different populations were monitored for different lengths of time.
+
+3. The number of populations contributing to the median decreases as the
+   number of years since monitoring began increases.
+
+4. The 20-year distribution analysis only includes populations with a
+   measurement exactly 20 years after monitoring began.
+
+5. The original studies used many different measurement units. Converting
+   measurements to relative indices makes trends more comparable but does not
+   eliminate all differences between monitoring methodologies.
+
+6. The dataset is observational. The analysis identifies differences in
+   observed population trends but does not establish that ecosystem type
+   caused those differences.
+
+# 10. Conclusion
+
+Monitored wildlife populations displayed different relative trajectories
+across freshwater, marine, and terrestrial ecosystems during the first
+20 years after monitoring began.
+
+Marine populations showed the clearest decline, with the median population
+index falling from 100 to approximately 73.9. Freshwater populations initially
+declined before recovering to a median index of approximately 109.
+The terrestrial median remained close to its baseline value of 100.
+
+These results indicate that population trajectories differ across the three
+ecosystem categories represented in the dataset. However, the substantial
+variation among individual populations and the observational nature of the
+data mean that these patterns should be interpreted descriptively rather than
+causally.
+
+# Technical Notes
+
+The analysis was performed in R using the `tidyverse` and `ggplot2`.
+All transformations, population-index calculations, summaries, and figures
+were generated programmatically from the original dataset.
+

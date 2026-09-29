@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Wildlife Population Trends Across Ecosystems — a data analysis by Arjun Sharma" />
+  <title>Wildlife Population Trends — Arjun Sharma</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Ctext x='16' y='23' font-family='DM Serif Display, Georgia, serif' font-size='22' font-weight='400' fill='%23e8e8e6' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../effects.css" />
+</head>
+<body>
+
+  <div class="port">
+
+    <!-- Nav -->
+    <nav class="nav">
+      <a class="nav-name" href="../index.html" style="text-decoration:none;">Arjun Sharma</a>
+      <div class="nav-links">
+        <a href="../index.html#work">Projects</a>
+        <a href="../index.html#datascience">Data Science</a>
+        <a href="../index.html#leadership">Leadership</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Report header -->
+    <section class="report-header">
+      <a class="back-link" href="../index.html#datascience">&larr; Back to Data Science</a>
+      <p class="section-label" style="margin-top:1.5rem;">Data Science</p>
+      <div class="card-header">
+        <span class="card-title">Wildlife Population Trends Across Ecosystems</span>
+        <span class="project-year">2026</span>
+      </div>
+      <p class="card-summary">
+        How have monitored wildlife populations changed over time, and do those changes differ across
+        freshwater, marine, and terrestrial ecosystems? An analysis of the Living Planet Database (1950–2020)
+        using normalized population indices and median trajectories.
+      </p>
+      <div class="project-tags">
+        <span class="tag">R</span>
+        <span class="tag">tidyverse</span>
+        <span class="tag">ggplot2</span>
+        <span class="tag">R Markdown</span>
+        <span class="tag">knitr</span>
+      </div>
+      <div class="report-links">
+        <a href="https://github.com/arjunxplorer/portfolio/blob/main/Project/wildlife_population_analysis.Rmd" class="gh-link" target="_blank" rel="noopener">Source .Rmd ↗</a>
+        <a href="../Project/wildlife_population_analysis.html" class="gh-link" target="_blank" rel="noopener">Open full report ↗</a>
+      </div>
+    </section>
+
+    <!-- Embedded knitted report -->
+    <iframe
+      id="report"
+      class="report-frame"
+      src="../Project/wildlife_population_analysis.html"
+      title="Wildlife Population Trends Across Ecosystems — full report"
+      loading="eager"
+    ></iframe>
+
+    <div class="report-footer">
+      <a class="back-link" href="../index.html#datascience">&larr; Back to Data Science</a>
+    </div>
+
+    <!-- Contact -->
+    <footer class="contact" id="contact">
+      <p>Available for work</p>
+      <div class="contact-links">
+        <a href="https://github.com/arjunxplorer" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/arjunsharma99" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Auto-size the report iframe to its content.
+    // Primary: the knitted report posts its height (works on file:// too).
+    // Secondary: read contentDocument directly when same-origin.
+    (function() {
+      const frame = document.getElementById('report');
+      if (!frame) return;
+
+      let applied = 0;
+
+      function apply(h) {
+        h = Math.ceil(Number(h));
+        if (!h || h < 100 || h > 20000) return;
+        if (applied && h > applied + 400) return;
+        if (applied && Math.abs(h - applied) < 8) return;
+        applied = h;
+        frame.style.height = h + 'px';
+        frame.setAttribute('scrolling', 'no');
+      }
+
+      window.addEventListener('message', function(e) {
+        if (e.source !== frame.contentWindow) return;
+        const d = e.data;
+        if (!d || !d.type) return;
+        if (d.type === 'report-height') apply(d.height);
+        if (d.type === 'report-goto' && typeof d.offset === 'number') {
+          const rect = frame.getBoundingClientRect();
+          const top = window.pageYOffset + rect.top + d.offset - 32;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+      });
+
+      frame.addEventListener('load', function() {
+        try {
+          const doc = frame.contentDocument;
+          const marker = doc && doc.getElementById('technical-notes');
+          if (marker) {
+            const r = marker.getBoundingClientRect();
+            apply(r.bottom + 48);
+          }
+        } catch (e) {
+          /* file:// — postMessage from report-resize.html */
+        }
+      });
+    })();
+
+    // Dust mote texture
+    (function() {
+      const c = document.createElement('canvas');
+      c.width = 128;
+      c.height = 128;
+      const ctx = c.getContext('2d');
+      const img = ctx.createImageData(128, 128);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const t = Math.random();
+        let v;
+        if (t < 0.003) {
+          v = 140 + Math.random() * 115;
+        } else if (t < 0.02) {
+          v = 40 + Math.random() * 60;
+        } else {
+          v = Math.random() * 25;
+        }
+        d[i] = v;
+        d[i + 1] = v;
+        d[i + 2] = v;
+        d[i + 3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+      const div = document.createElement('div');
+      div.id = 'dust';
+      div.style.cssText =
+        'position:fixed;inset:0;pointer-events:none;z-index:9999;' +
+        'background-image:url(' + c.toDataURL() + ');' +
+        'background-repeat:repeat;background-size:128px 128px;' +
+        'opacity:0.25';
+      document.body.appendChild(div);
+    })();
+
+    // Mouse spotlight
+    (function() {
+      const div = document.createElement('div');
+      div.id = 'spotlight';
+      document.body.appendChild(div);
+      let raf = null;
+      document.addEventListener('mousemove', function(e) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(function() {
+          div.style.setProperty('--mx', e.clientX + 'px');
+          div.style.setProperty('--my', e.clientY + 'px');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
