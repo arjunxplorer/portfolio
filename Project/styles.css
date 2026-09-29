@@ -204,6 +204,11 @@ pre {
   padding: 0.875rem 1rem;
   overflow-x: auto;
   color: var(--text-secondary);
+  margin: 1rem 0 1.25rem;
+}
+
+pre.r {
+  border-left: 3px solid var(--border);
 }
 
 code {
@@ -212,6 +217,90 @@ code {
 
 pre code {
   color: inherit;
+}
+
+/* Pandoc/knitr code blocks — dark palette (overrides embedded tango theme) */
+div.sourceCode {
+  background-color: var(--bg-secondary) !important;
+  border: 0.5px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: 2px;
+  margin: 1rem 0 1.25rem;
+}
+
+div.sourceCode pre.sourceCode {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0.875rem 1rem;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r {
+  color: var(--text-secondary);
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span {
+  color: var(--text-secondary);
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.st,
+div.sourceCode pre.sourceCode code.sourceCode.r span.ss,
+div.sourceCode pre.sourceCode code.sourceCode.r span.vs,
+div.sourceCode pre.sourceCode code.sourceCode.r span.ch {
+  color: #9ae66e;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.kw,
+div.sourceCode pre.sourceCode code.sourceCode.r span.cf {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.fu {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.ot,
+div.sourceCode pre.sourceCode code.sourceCode.r span.at,
+div.sourceCode pre.sourceCode code.sourceCode.r span.dt {
+  color: var(--text-tertiary);
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.sc,
+div.sourceCode pre.sourceCode code.sourceCode.r span.op {
+  color: #ffb86c;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.dv,
+div.sourceCode pre.sourceCode code.sourceCode.r span.bn,
+div.sourceCode pre.sourceCode code.sourceCode.r span.fl {
+  color: #7ec8e3;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.co,
+div.sourceCode pre.sourceCode code.sourceCode.r span.do,
+div.sourceCode pre.sourceCode code.sourceCode.r span.an {
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.cn {
+  color: #e6c87a;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.va {
+  color: #ffffff;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r span.al,
+div.sourceCode pre.sourceCode code.sourceCode.r span.er {
+  color: #ff6b6b;
+}
+
+div.sourceCode pre.sourceCode code.sourceCode.r a {
+  color: inherit;
+  border-bottom: none;
 }
 
 /* Floating TOC (tocify) */
